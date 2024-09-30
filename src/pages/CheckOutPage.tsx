@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { useCreteOrderMutation } from "../redux/api/api";
 import { toast } from "sonner";
+import { currentUser } from "../redux/features/authSlice";
 
 
 
 export default function CheckOutPage() {
   const [createOrder] = useCreteOrderMutation()
+  const currUser=useAppSelector(currentUser)
   // State for user input
   const [user, setUser] = useState({
-    name: "Fahim Ahammed",
-    email: "fahim@ph.com",
-    phone: "0123456789",
-    address: "Dhaka, Bangladesh",
+    name: currUser?.name,
+    email: currUser?.email,
+    phone: "000000000",
+    address: "dhaka",
   });
 
   // Replace this with actual selector from your Redux store // Replace with your Redux selector

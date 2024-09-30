@@ -27,12 +27,12 @@ const Benefits = () => {
   return (
     <div className="bg-white py-16">
       <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">Why Choose Us?</h2>
-      <div className="container mx-auto grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+      <div className="container mx-auto grid lg:grid-cols-2  md:grid-cols-2 gap-8 ">
         {benefits.map((benefit, index) => (
-          <div key={index} className="flex flex-col items-center text-center">
+          <div key={index} className="flex flex-col items-center bg-gray-500 p-2 rounded-lg text-center">
             <img src={benefit.image} alt={benefit.title} className="w-64 h-64 object-cover rounded-lg mb-4" />
-            <h3 className="text-2xl font-semibold mb-2">{benefit.title}</h3>
-            <p className="text-gray-600">{benefit.description}</p>
+            <h3 className="text-2xl font-semibold mb-2 text-black">{benefit.title}</h3>
+            <p className="text-black">{benefit.description}</p>
           </div>
         ))}
       </div>
