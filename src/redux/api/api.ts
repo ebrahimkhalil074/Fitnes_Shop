@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TQueryParams, TResponseRedux } from "../../types/globalTypes";
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://fitness-shop-becend.vercel.app/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://fitness-shop-becend.vercel.app/api", credentials: 'include', }),
   tagTypes: ["products", "verify"],
   endpoints: (builder) => ({
 

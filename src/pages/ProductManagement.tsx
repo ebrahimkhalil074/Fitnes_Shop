@@ -109,11 +109,11 @@ console.log(productsData)
     try {
       const res = await deleteService(id).unwrap();
       if (res.success) {
-        toast.success('Service deleted successfully');
+        toast.success('product deleted successfully');
       }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error('Failed to delete service');
+      toast.error('Failed to delete product');
     }
   };
 
@@ -192,7 +192,7 @@ console.log(categoryOptions)
     try {
       const res = await addService(serviceData);
       if ((res.error) ) {
-        toast.error('SERVICE CREATION FAILED', { id: toastId });
+        toast.error('PRODUCT CREATION FAILED', { id: toastId });
       } else {
         toast.success(res.data?.message, { id: toastId });
       }
