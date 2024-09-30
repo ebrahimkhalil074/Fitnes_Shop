@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard"; // Assuming you have a product card component
-import { useGetProductsQuery } from "../redux/api/api";
+import { useGetProductsQuery } from "../redux/api/allapi";
 
 const FeaturedProducts = () => {
     const {data} = useGetProductsQuery(undefined)

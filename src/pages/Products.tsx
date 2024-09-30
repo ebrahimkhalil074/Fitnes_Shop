@@ -1,7 +1,7 @@
 
 
 import React, { useState, } from "react";
-import { useGetAllCategoryQuery, useGetProductsQuery } from "../redux/api/api";
+import { useGetAllCategoryQuery, useGetProductsQuery } from "../redux/api/allapi";
 import ProductCart from "../components/ProductCard";
 import { useParams } from "react-router-dom";
 import { Pagination } from "antd";

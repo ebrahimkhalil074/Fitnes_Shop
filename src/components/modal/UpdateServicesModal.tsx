@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PhForm from "../../form/PhForm";
 import PhInput from "../../form/PhInput";
-import { useUpdatePeoductMutation } from "../../redux/api/api";
+import { useUpdatePeoductMutation } from "../../redux/api/allapi";
 
 const UpdateServiceModal = ({ service, isVisible, onClose }:any) => {
   console.log('inside modal',service);

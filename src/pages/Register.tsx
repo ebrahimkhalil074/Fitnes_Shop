@@ -2,7 +2,7 @@
 import { Button, Col, Flex, Row,  } from "antd";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { useAddUserMutation } from "../redux/api/api";
+import { useAddUserMutation } from "../redux/api/allapi";
 import React from 'react';
 import PhForm from "../form/PhForm";
 import PhInput from "../form/PhInput";

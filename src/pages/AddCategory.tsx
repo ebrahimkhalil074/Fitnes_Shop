@@ -1,10 +1,11 @@
 
 import { Button, Col, Flex, Row,  } from "antd";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { useAddCategoryMutation } from "../redux/api/api";
+
 import React from 'react';
 import PhForm from "../form/PhForm";
 import PhInput from "../form/PhInput";
+import { useAddCategoryMutation } from "../redux/api/allapi";
 
 
 

@@ -1,119 +1,87 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TQueryParams, TResponseRedux } from "../../types/globalTypes";
-export const baseApi = createApi({
-  reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://fitness-shop-becend.vercel.app/api", credentials: 'include', }),
-  tagTypes: ["products", "verify"],
-  endpoints: (builder) => ({
-
-    addUser: builder.mutation({
-      query: (data) => ({
-        url: '/auth/signup',
-       method: 'POST',
-       body: data
-    }),
-    }),
-    loginUser: builder.mutation({
-      query: (data) => ({
-        url: '/auth/login',
-       method: 'POST',
-       body: data
-    }),
-    }),
-    
-    getProducts:builder.query({
-      query:(args)=>{  
-        console.log('args',args);
-        const params = new URLSearchParams();
-        if (args) {
-          args.forEach((item :TQueryParams) => {
-            params.append(item.name, item.value as string);
-          });
-        }
-        return {
-          url:'/product',
-          method: 'GET',
-         params: params
-        }
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// Need to use the React-specific entry point to import createApi
+import {
+    BaseQueryApi,
+    BaseQueryFn,
+    DefinitionType,
+    FetchArgs,
+    createApi,
+    fetchBaseQuery,
+  } from '@reduxjs/toolkit/query/react';
+  import { RootState } from '../store';
+  
+  import { toast } from 'sonner';
+  
+  
+  
+  const baseQuery = fetchBaseQuery({
+    baseUrl: 'https://fitness-shop-becend.vercel.app/api',
+    credentials: 'include',
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.token;
+  
+      if (token) {
+        headers.set('authorization', `${token}`);
       }
-     }),
-     getSingleProducts:builder.query({
-      query: (id) => {
-        console.log('args',id);
-    
-         return {
-        url:`product/${id}`,
-        method: 'GET',
-        // params: params,
-      }},
-      transformResponse: (response :TResponseRedux<any> ) => {
-        console.log('insaide api',response);
+  
+      return headers;
+    },
+  });
+  
+  const baseQueryWithRefreshToken: BaseQueryFn<
+    FetchArgs,
+    BaseQueryApi,
+    DefinitionType
+  > = async (args, api, extraOptions): Promise<any> => {
+    const result = await baseQuery(args, api, extraOptions);
+  if (result?.error?.status === 404) {
+    toast.error(`somthing went worng ${result.error?.status}`)
+  }
+  if (result?.error?.status === 403) {
+    toast.error(`somthing went worng ${result.error?.status}`)
+  }
+   
+    if (result?.error?.status === 401) {
+      //* Send Refresh
+      toast.error(`somthing went worng ${result.error?.status}`)
+      console.log('Sending refresh token');
+  
+      const res = await fetch('https://fitness-shop-becend.vercel.app/api/auth/refresh-token',{
+        method:'POST',
+        credentials:'include', 
         
-        return{
-         data: response.data,
-         meta: response.meta
-          
-        }
-         
-      },
-      // add other response transformations here
-    
-     
-    }),
-    
-    getAllCategory: builder.query({
-      query: () => ({
-        method: "GET",
-        url: "/category",
-      }),
-    
-    }),
-    addProduct: builder.mutation({
-      query: (data) => ({
-        url: '/product',
-       method: 'POST',
-       body: data
-    }),
-    }),
-    addCategory: builder.mutation({
-      query: (data) => ({
-        url: '/category',
-       method: 'POST',
-       body: data
-    }),
-    }),
-    updatePeoduct: builder.mutation({
-      query: (args) => ({
-        url: `product/${args.id}`,
-        method: 'PUT',
-        body: args.data,
-      }),
-      invalidatesTags: ['products'],
-    }),
-   deleteProduct: builder.mutation({
-      query: (id) => ({
-        url: `product/${id}`,
-        method: 'DELETE',
-       
-      }),
-      invalidatesTags: ['products'],
-    }),
-    getAllProducts: builder.query({
-      query: () => ({
-        method: "GET",
-        url: "/product",
-      }),
-    providesTags:['products']  
-    }),
-    creteOrder: builder.mutation({
-      query: (data) => {
-        return {
-          method: "POST",
-          url: `/order/create`,
-          body: data,
-        };
-      }
-    }),
-  }),
-});
-export const {useAddUserMutation ,useLoginUserMutation, useGetProductsQuery,useGetAllCategoryQuery, useCreteOrderMutation,useGetSingleProductsQuery,useGetAllProductsQuery,useDeleteProductMutation,useUpdatePeoductMutation,useAddProductMutation ,useAddCategoryMutation} = baseApi;
+    });
+  
+  
+      const data = await res.json();
+  console.log(data);
+  
+      // if (data?.data?.accessToken) {
+      //   const user = (api.getState() as RootState).auth.user;
+  
+      //   api.dispatch(
+      //     setUser({
+      //       user,
+      //       token: data.data.accessToken,
+      //     })
+      //   );
+  
+      //   result = await baseQuery(args, api, extraOptions);
+      // }
+      //  else {
+      //   // api.dispatch(logOut());
+      // }
+    }
+  
+    return result;
+  };
+  
+  export const baseApi = createApi({
+    reducerPath: 'baseApi',
+    baseQuery: baseQueryWithRefreshToken,
+    tagTypes: ['products','slot','user'],
+    endpoints: () => ({}),
+  });
+  
+  
+  

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { useGetSingleProductsQuery } from "../redux/api/api";
+import { useGetSingleProductsQuery } from "../redux/api/allapi";
 import { addToCart } from "../redux/features/cartSlice";
 import { Button } from "antd";
 

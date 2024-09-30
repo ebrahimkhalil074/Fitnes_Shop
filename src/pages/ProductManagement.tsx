@@ -2,7 +2,7 @@
 import { Button, Modal, Pagination, Table, TableProps } from 'antd';
 import { useState } from 'react';
 import { TQueryParams } from '../types/globalTypes';
-import { useAddProductMutation, useDeleteProductMutation, useGetAllCategoryQuery, useGetAllProductsQuery } from '../redux/api/api';
+import { useAddProductMutation, useDeleteProductMutation, useGetAllCategoryQuery, useGetAllProductsQuery } from '../redux/api/allapi';
 import React from 'react';
 import { toast } from 'sonner';
 import UpdateServiceModal from '../components/modal/UpdateServicesModal';

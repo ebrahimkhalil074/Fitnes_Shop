@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetAllCategoryQuery } from "../redux/api/api";
+import { useGetAllCategoryQuery } from "../redux/api/allapi";
 import CategoryCard from "./CategoryCard";
 type TCategory ={ 
     name: string; 
