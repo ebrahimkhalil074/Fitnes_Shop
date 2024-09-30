@@ -2,18 +2,19 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="mt-3 bg-gradient-to-r from-black to-gray-800 text-white py-16 px-4 text-center">
-      <div className="container mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-          Welcome to AmarPay
-        </h1>
-        <p className="text-xl md:text-2xl mb-8 drop-shadow-lg">
-          Your gateway to quality products and excellent service.
+    <div className="relative h-screen flex items-center justify-center bg-cover bg-center" 
+      style={{ backgroundImage: "url('https://i.ibb.co.com/FH88L5s/craig-lovelidge-WChqiwx-P8cw-unsplash.jpg')" }}>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 text-center text-white p-6 max-w-4xl">
+        <h1 className="text-5xl md:text-7xl font-bold mb-4">Get Fit, Stay Strong</h1>
+        <p className="text-xl md:text-2xl mb-8">
+          Discover premium fitness equipment for home and gym. Unleash your potential.
         </p>
-        <a
-          href="/products"
-          className="bg-white text-black font-semibold py-2 px-6 rounded-lg hover:bg-black hover:text-white transition duration-300 shadow-lg"
-        >
+        <a href="/shop"
+           className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
           Shop Now
         </a>
       </div>

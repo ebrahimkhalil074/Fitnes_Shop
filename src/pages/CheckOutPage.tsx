@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { useCreteOrderMutation } from "../redux/api/api";
+import { toast } from "sonner";
+
+
 
 export default function CheckOutPage() {
   const [createOrder] = useCreteOrderMutation()
@@ -24,6 +27,7 @@ export default function CheckOutPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading('order creating...!')
     const data = {
       user,
       products: cartItems.map((item) => ({
@@ -31,15 +35,22 @@ export default function CheckOutPage() {
         quantity: item.quantity,
       })),
     };
+    console.log(data)
     try {
       const res = await createOrder(data).unwrap();
+
       if (res.success) {
         console.log(res)
+        window.location.href = res.data.payment_url
+        toast.success('order created successfully!',{id:toastId});
       } else {
-        console.error('Order creation failed:', res.message);
+        console.log(res
+        )
+        toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error.data.message);
+      toast.error(error.data.message);
     }
   };
 

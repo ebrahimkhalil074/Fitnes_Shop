@@ -1,12 +1,18 @@
 import React from "react";
 import Banner from "../components/Banner";
-import Products from "../components/Products";
+import Category from "../components/Category";
+import Footer from "../components/Footer";
+import FeaturedProducts from "../components/Featured";
+import Benefits from "../components/Benefits";
+
 
 export default function Home() {
   return (
     <>
       <Banner />
-      <Products />
+      <Category/>
+<FeaturedProducts></FeaturedProducts>
+<Benefits/>
     </>
   );
 }

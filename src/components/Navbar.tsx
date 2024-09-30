@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
  
 import { useAppSelector } from "../redux/hooks";
+import { currentUser } from "../redux/features/authSlice";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,12 +13,12 @@ const Header = () => {
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+const user = useAppSelector(currentUser)
   return (
     <header className="bg-black text-white rounded-sm px-3">
   <nav className="container mx-auto flex items-center justify-between space-x-10 py-4">
     <Link to={"/"} className="text-white font-bold text-lg">
-      Amar Pay
+    Fitness Shop
     </Link>
 
     <div className="hidden md:flex items-center space-x-5">
@@ -31,12 +32,12 @@ const Header = () => {
           </Link>
         </li>
         <li>
-          <a
+          <Link
             className="rounded-lg backdrop-blur-[2px] p-1 inline-block text-white hover:bg-white hover:text-black transition duration-300"
-            href="#"
+           to='/about'
           >
             About
-          </a>
+          </Link>
         </li>
         <li className="relative">
           <Link
@@ -49,6 +50,21 @@ const Header = () => {
             {products.length}
           </span>
         </li>
+        {
+          user?.role=='admin' &&
+          <li className="relative">
+          <Link
+            className="rounded-lg backdrop-blur-[2px] p-1 inline-block text-white hover:bg-white hover:text-black transition duration-300"
+            to={"/dashboard"}
+          >
+            Dashboard
+          </Link>
+         
+        </li>
+        }
+  {user?
+    <button className="btn btn-ghost btn-circle"> LogOut</button>:<button><Link to='/login'>Login</Link></button>
+    }
 
         <li>
           <button
