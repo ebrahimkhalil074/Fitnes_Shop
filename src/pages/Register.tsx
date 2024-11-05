@@ -44,7 +44,7 @@ const Register = () => {
       <PhInput type="text" name='address' label="Address" labelClass="text-lg font-semibold text-blue-500 bg-gray-100 p-1 px-2 rounded-lg" ></PhInput>
 <div className="flex justify-between items-baseline">
 <Button htmlType="submit"> Submit</Button>
-<div> you are allredy register please.!<Link to='/login'><Button>Login</Button></Link></div>
+<div> you are allredy register please.!<Link to='/login'><Button type="primary">Login</Button></Link></div>
 </div>
 
     </PhForm>

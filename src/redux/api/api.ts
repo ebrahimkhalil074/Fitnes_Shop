@@ -15,7 +15,7 @@ import {
   
   
   const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://fitness-shop-becend.vercel.app/api',
+    baseUrl: 'https://fitness-shop-becend-q95a.vercel.app/api',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;

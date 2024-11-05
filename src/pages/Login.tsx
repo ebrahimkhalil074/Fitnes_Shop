@@ -2,7 +2,7 @@
 
 import { Button, Col,  Row,  } from "antd";
 import { FieldValues } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useAppDispatch } from "../redux/hooks";
 import { verifyToken } from "../utills/verifyToken";
@@ -76,7 +76,10 @@ justify='center' align='middle' >
    
       <PhInput type="password" name='password' label="Password" labelClass="text-lg font-semibold text-white" ></PhInput>
   
-<Button htmlType="submit"> Submit</Button>
+      <div className="flex justify-between items-center">
+<Button htmlType="submit">Login</Button>
+<h1>Do You Allready Register.! Please <Link to='/register'><Button type="primary">Register</Button></Link></h1>
+</div>
     </PhForm>
 </Col>
    

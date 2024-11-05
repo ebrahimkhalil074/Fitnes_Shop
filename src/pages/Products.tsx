@@ -85,7 +85,7 @@ if (category=='products') {
     });
 
   return (
-    <div className="container">
+    <div className="container min-h-screen">
     
 <div className="flex justify-center items-center gap-4 bg-gray-400">
 {/*  */}
